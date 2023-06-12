@@ -1,20 +1,22 @@
 <!-- Heading -->
 
-# URL Shorten Service
+# URL Shorten Docker
 
-The URL Shorten Service is a web application built with Node.js that allows you to shorten long URLs into shorter, more manageable links. It utilises MongoDB as the database to store the shortened URLs and Docker for containerisation.:blush::blush::blush:
+The URL Shorten Docker is a web application built with Node.js that allows you to shorten long URLs into shorter, more manageable links.
 
-[todo: add MediTask web link after deploy it]: #
+It utilises MongoDB as the database to store the shortened URLs and Docker for containerisation.:blush::blush::blush:
 
----
+:information_source: This application uses the latest version of Docker Compose (Compose V2, official upgrade from the end of June 2023) for optimal compatibility and support.
 
-## Table of Contents
+## ![Alt screenshot](images/Screenshot.png "Optional Title")
 
-- [URL Shorten Service](#url-shorten-service)
-  - [Table of Contents](#table-of-contents)
+## Table of Contents- [URL Shorten Docker](#url-shorten-docker)
+
+- [URL Shorten Docker](#url-shorten-docker)
+  - [](#)
+  - [Table of Contents- URL Shorten Docker](#table-of-contents--url-shorten-docker)
   - [Features](#features)
   - [Prerequisites](#prerequisites)
-  - [Tools](#tools)
   - [Getting Started](#getting-started)
   - [Folder Structure](#folder-structure)
 
@@ -30,21 +32,7 @@ The URL Shorten Service is a web application built with Node.js that allows you 
 
 ## Prerequisites
 
-To run the URL Shorten Service using Docker, make sure you have Docker installed on your machine. You can download Docker from [https://www.docker.com](https://www.docker.com).
-
-## Tools
-
-This project utilises the following technologies and tools:
-
-- **React**: A JavaScript library for building user interfaces.
-- **React Router**: A popular routing library for React applications.
-- **Material-UI**: A React component library that implements Material Design.
-  - **@mui/icons-material**: A set of Material Design icons for use with Material-UI components.
-- **Tailwind CSS**: A utility-first CSS framework for rapidly building modern user interfaces.
-- **Chart.js**: A JavaScript library for creating responsive and customizable charts.
-- **react-chartjs-2**: A React wrapper for Chart.js that simplifies chart integration into React applications.
-
----
+To run the URL Shorten Docker using Docker, make sure you have Docker installed on your machine. You can download Docker from [https://www.docker.com](https://www.docker.com).
 
 ## Getting Started
 
@@ -53,73 +41,50 @@ Follow these steps to get the URL Shorten Service up and running using Docker:
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-username/url-shorten-service.git
+   git clone https://github.com/your-username/url-shortener-docker.git
 
    ```
 
 2. Navigate to the project directory:
 
    ```shell
-   cd url-shorten-service
+   cd url-shortener-docker
 
    ```
 
-3. Build the Docker image:
+3. Build and start the Docker containers using docker compose:
 
    ```shell
-   docker build -t url-shorten-service .
+   ddocker compose up -d --build
 
    ```
 
-4. Build the Docker image:
+   This command will build the Docker image and start the necessary containers for the server and the MongoDB database in detached mode.
 
-   ```shell
-   docker build -t url-shorten-service .
-   ```
+4. Once the containers are up and running, you can access the URL shortener server at [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## Folder Structure
 
 ```css
-
-├── public/
-│   ├── index.html
-│   └── ...
-├── src/
-│   ├── components/
-│   │   ├── Header/
-│   │   │   ├── Header.js
-│   │   │   ├── Header.css
-│   │   │   └── Account.js
-│   │   ├── Pages/
-│   │   │   ├── Assessment/
-│   │   │   │   └── Student_Grade.js
-│   │   │   ├── Cohorts/
-│   │   │   │   ├── Cohorts.js
-│   │   │   │   ├── Cohorts.css
-│   │   │   │   ├── Student_Profiles.js
-│   │   │   │   ├── Student_Profiles.css
-│   │   │   │   └── YearButtonData.js
-│   │   │   ├── Dashboard/
-│   │   │   ├── Login/
-│   │   │   │   └── Login.js
-│   │   │   ├── Messages/
-│   │   │   │   ├── Messages.js
-│   │   │   │   └── Messages.css
-│   │   ├── Sidebar/
-│   │   │   ├── Sidebar.js
-│   │   │   ├── Sidebar.css
-│   │   └── └── SidebarData.js
-│   ├── images/
-│   │   └──  ...
-│   ├── App.css
-│   ├── App.js
-│   ├── index.css
-│   └── App.js
-├── .gitignore
-├── package-lock.json
-├── package.json
-├── README.md
-└── tailwind.config.js
+├── Readme.md
+├── docker-compose.yml
+└── url-shortener
+    ├── Dockerfile
+    ├── models
+    │   └── shortUrl.js
+    ├── package-lock.json
+    ├── package.json
+    ├── src
+    │   └── server.js
+    └── views
+        └── index.ejs
 ```
+
+- docker-compose.yml: This file defines the services and configurations for Docker containers.
+- url-shortener/Dockerfile: The Dockerfile used to build the server container.
+- url-shortener/models/shortUrl.js: The MongoDB data model for the short URL.
+- url-shortener/package-lock.json and url-shortener/package.json: These files define the project dependencies and configuration.
+- url-shortener/src/server.js: The main server file containing the implementation logic.
+- url-shortener/views/index.ejs: The EJS template for the server's homepage.
