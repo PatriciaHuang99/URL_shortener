@@ -1,0 +1,16 @@
+services:
+  url-shortener:
+    build: ./url-shortener
+    ports:
+      - 3000:3000
+    environment:
+      DB_URL: mongodb://db/url-shortener-docker
+
+  db:
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - url-shortener-docker:/data/db
+volumes:
+  url-shortener-docker:
