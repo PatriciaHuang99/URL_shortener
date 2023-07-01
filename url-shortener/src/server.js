@@ -1,29 +1,27 @@
+//built-in func to import external modules
 const express = require("express");
 const res = require("express/lib/response");
-const mongoose = require("mongoose"); //built-in func to import external modules
+const mongoose = require("mongoose"); 
 const app = express();
 const ShortUrl = require("../models/shortUrl");
 
 mongoose
-  //.connect("mongodb://127.0.0.1/urlShortener" // hardcode
+  // DB_URL is defined in docker-compose.yml.
   .connect(process.env.DB_URL, {
-    // link the DB_URL variable in compose file
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("Connected!"));
+  
 
-// mongoose.connection.on("connected", () => {
-//   console.log("Connected to MongoDB");
-// });
 
-// mongoose.connection.on("error", (error) => {
-//   console.log("Error connecting to MongoDB:", error);
-// });
+mongoose.connection.on("error", (error) => {
+   console.log("Error connecting to MongoDB:", error);
+ });
 
-// mongoose.connection.on("disconnected", () => {
-//   console.log("Disconnected from MongoDB");
-// });
+ mongoose.connection.on("disconnected", () => {
+   console.log("Disconnected from MongoDB");
+ });
 
 app.set("view engine", "ejs"); // telling express use EJS when rendering a view file
 

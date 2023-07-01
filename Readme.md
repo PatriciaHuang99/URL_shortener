@@ -55,7 +55,7 @@ Follow these steps to get the URL Shorten Service up and running using Docker:
 3. Build and start the Docker containers using docker compose:
 
    ```shell
-   ddocker compose up -d --build
+   docker compose up -d --build
 
    ```
 
