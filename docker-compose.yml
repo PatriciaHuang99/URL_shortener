@@ -5,6 +5,8 @@ services:
       - 3000:3000
     environment:
       DB_URL: mongodb://db/url-shortener-docker
+    # Define the Docker image for the url-shortener service for ECR
+    image: public.ecr.aws/d2t0w6d8/shorten-url-app:latest
 
   db:
     image: mongo:4.0-xenial
