@@ -1,3 +1,5 @@
+<!-- This is the HTML template for the URL Shortener Service application. -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,8 +18,7 @@
   <body>
     <div class="container">
       <h1>URL Shorter Service</h1>
-
-      <!-- action: /shortUrls link to Mongo db api endpoint -->
+       <!-- Form for submitting a URL to be shortened. -->
       <form
         action="/shortUrls"
         method="POST"
@@ -42,7 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <%= %> :dynamic values, be careful open and clos-->
+          <!-- Loop through the shortUrls array and display the data in the table rows -->
           <% shortUrls.forEach(shortUrl => { %>
           <tr>
             <td>

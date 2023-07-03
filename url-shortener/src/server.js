@@ -1,7 +1,8 @@
 /**
- * This file serves as the main server script 
+ * This file serves as the main server script for the application
  * that sets up the Express server, connects to MongoDB, defines routes, and handles incoming requests.
  */
+
 const express = require("express");
 const res = require("express/lib/response");
 const mongoose = require("mongoose"); 

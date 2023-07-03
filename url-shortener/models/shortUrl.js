@@ -1,9 +1,11 @@
+/**
+ * Defines the schema for storing short URLs and exports the Mongoose model.
+ */
+
 const mongoose = require("mongoose");
 const shortId = require("shortid");
 
-/**
- * Schema for storing short URLs.
- */
+// Schema for storing short URLs.
 const shortUrlSchema = new mongoose.Schema({
   full: {
     type: String,
@@ -23,4 +25,3 @@ const shortUrlSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("ShortUrl", shortUrlSchema); 
-
