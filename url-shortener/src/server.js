@@ -1,4 +1,7 @@
-//built-in func to import external modules
+/**
+ * This file serves as the main server script 
+ * that sets up the Express server, connects to MongoDB, defines routes, and handles incoming requests.
+ */
 const express = require("express");
 const res = require("express/lib/response");
 const mongoose = require("mongoose"); 
@@ -13,8 +16,6 @@ mongoose
   })
   .then(() => console.log("Connected!"));
   
-
-
 mongoose.connection.on("error", (error) => {
    console.log("Error connecting to MongoDB:", error);
  });
@@ -23,27 +24,28 @@ mongoose.connection.on("error", (error) => {
    console.log("Disconnected from MongoDB");
  });
 
-app.set("view engine", "ejs"); // telling express use EJS when rendering a view file
+app.set("view engine", "ejs"); 
 
-app.use(express.urlencoded({ extended: false })); // tackle the req // function: to reserve the special chars for the sending data
+// Middleware to parse URL-encoded form data and reserve special characters for sending data
+app.use(express.urlencoded({ extended: false }));
 
-// render obj(shortUrls) to EJS template engine (index), so can use obj in index.ejs
+// Render the index view with the shortUrls object.
 app.get("/", async (req, res) => {
   const shortUrls = await ShortUrl.find();
-  res.render("index", { shortUrls: shortUrls }); // pass shortUrls obj to "index" view; convention: obj name = variable name
+  res.render("index", { shortUrls: shortUrls });
 });
-// wait until req.body.fullURL finish, then do the rest, such as res.redirect
+
+// Create a new ShortUrl object and redirect to the index view.
 app.post("/shortUrls", async (req, res) => {
-  await ShortUrl.create({ full: req.body.fullURL }); // create a new ShortUrl object, and set its 'full' field from req.body.name
+  // Create a new ShortUrl Obj in the database with the provided full URL from the request body
+  await ShortUrl.create({ full: req.body.fullURL });
   res.redirect("/");
 });
 
-// find the record in ShortUrl that has same short name as url (url after / -> short name)
+// Find the record in ShortUrl that has the same short name as the URL.
 app.get("/:shortUrl", async (req, res) => {
-  // : means find all after /
   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
   if (shortUrl == null) return res.sendStatus(404);
-
   shortUrl.clicks++;
   shortUrl.save();
   res.redirect(shortUrl.full);
