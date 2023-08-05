@@ -34,7 +34,7 @@ const app = express();
 app.get("/", async (req, res) => {
   const shortUrls = [] ;//await ShortUrl.find();
   // res.render("index", { shortUrls: shortUrls });
-  res.sen("Hi")
+  res.send("Hi")
 });
 
 // Create a new ShortUrl object and redirect to the index view.
