@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Render the index view with the shortUrls object.
 app.get("/", async (req, res) => {
-  const shortUrls = [] ;//await ShortUrl.find();
+  const shortUrls = await ShortUrl.find();
   res.render("index", { shortUrls: shortUrls });
   // res.send("Hi")
 });
