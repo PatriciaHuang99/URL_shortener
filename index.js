@@ -13,7 +13,7 @@ const ShortUrl = require("./models/shortUrl");
 
 mongoose
   // DB_URL is defined in docker-compose.yml.
-  .connect(process.env.DB_URL, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
