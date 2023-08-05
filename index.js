@@ -4,8 +4,8 @@
  */
 
 const express = require("express");
-// const res = require("express/lib/response");
-// const mongoose = require("mongoose"); 
+const res = require("express/lib/response");
+const mongoose = require("mongoose"); 
 const app = express();
 // const ShortUrl = require("./models/shortUrl");
 
@@ -25,36 +25,36 @@ const app = express();
 //    console.log("Disconnected from MongoDB");
 //  });
 
-// app.set("views", "views");
-// app.set("view engine", "ejs"); 
+app.set("views", "views");
+app.set("view engine", "ejs"); 
 
 // // Middleware to parse URL-encoded form data and reserve special characters for sending data
-// app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 // Render the index view with the shortUrls object.
 app.get("/", async (req, res) => {
   // const shortUrls = await ShortUrl.find();
   // res.render("index", { shortUrls: shortUrls });
   res.json({
-    message: 'helloworodlf'
+    message: 'rtyju'
   })
 });
 
 // Create a new ShortUrl object and redirect to the index view.
-// app.post("/shortUrls", async (req, res) => {
-//   // Create a new ShortUrl Obj in the database with the provided full URL from the request body
-//   await ShortUrl.create({ full: req.body.fullURL });
-//   res.redirect("/");
-// });
+app.post("/shortUrls", async (req, res) => {
+  // Create a new ShortUrl Obj in the database with the provided full URL from the request body
+  await ShortUrl.create({ full: req.body.fullURL });
+  res.redirect("/");
+});
 
-// // Find the record in ShortUrl that has the same short name as the URL.
-// app.get("/:shortUrl", async (req, res) => {
-//   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
-//   if (shortUrl == null) return res.sendStatus(404);
-//   shortUrl.clicks++;
-//   shortUrl.save();
-//   res.redirect(shortUrl.full);
-// });
+// Find the record in ShortUrl that has the same short name as the URL.
+app.get("/:shortUrl", async (req, res) => {
+  const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl });
+  if (shortUrl == null) return res.sendStatus(404);
+  shortUrl.clicks++;
+  shortUrl.save();
+  res.redirect(shortUrl.full);
+});
 
 app.listen(process.env.PORT || 3000);
 module.exports = app
