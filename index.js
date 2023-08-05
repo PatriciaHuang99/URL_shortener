@@ -6,7 +6,7 @@
 const express = require("express");
 // const res = require("express/lib/response");
 // const mongoose = require("mongoose"); 
-// const app = express();
+const app = express();
 // const ShortUrl = require("./models/shortUrl");
 
 // mongoose
