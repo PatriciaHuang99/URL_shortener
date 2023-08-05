@@ -7,7 +7,7 @@ const express = require("express");
 const res = require("express/lib/response");
 const mongoose = require("mongoose"); 
 const app = express();
-const ShortUrl = require("../models/shortUrl");
+const ShortUrl = require("./models/shortUrl");
 
 mongoose
   // DB_URL is defined in docker-compose.yml.

@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "./url-shortener/src/server/server.js",
+        "src": "./index.js",
         "use": "@vercel/node"
       }
     ],
