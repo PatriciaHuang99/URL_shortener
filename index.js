@@ -25,7 +25,7 @@ const app = express();
 //    console.log("Disconnected from MongoDB");
 //  });
 
-app.set("view engine", "ejs"); 
+// app.set("view engine", "ejs"); 
 
 // // Middleware to parse URL-encoded form data and reserve special characters for sending data
 // app.use(express.urlencoded({ extended: false }));
