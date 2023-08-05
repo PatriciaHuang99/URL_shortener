@@ -8,6 +8,8 @@ It utilises MongoDB as the database to store the shortened URLs and Docker for c
 
 :information_source: This application uses the latest version of Docker Compose (Compose V2, official upgrade from the end of June 2023) for optimal compatibility and support.
 
+:star: This application is also deployed on Vercel. You can access it by clicking here: [https://url-shortener99.vercel.app/](https://url-shortener99.vercel.app/). Additionally, you can find the source code in my [url-shortener-vercel repository](https://github.com/PatriciaHuang99/url-shortener-vercel).
+
 ## ![Alt screenshot](images/Screenshot.png "Optional Title")
 
 ## Table of Contents- [URL Shorten Docker](#url-shorten-docker)
