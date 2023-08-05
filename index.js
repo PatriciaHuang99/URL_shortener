@@ -28,7 +28,7 @@ const app = express();
 app.set("view engine", "ejs"); 
 
 // // Middleware to parse URL-encoded form data and reserve special characters for sending data
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 
 // Render the index view with the shortUrls object.
 app.get("/", async (req, res) => {
