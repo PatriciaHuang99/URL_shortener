@@ -7,11 +7,13 @@ const express = require("express");
 const res = require("express/lib/response");
 const mongoose = require("mongoose"); 
 const app = express();
-const ShortUrl = require("../models/shortUrl");
+const path = require('path');
+
+const ShortUrl = require("./models/shortUrl");
 
 mongoose
   // DB_URL is defined in docker-compose.yml.
-  .connect(process.env.DB_URL, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -25,15 +27,17 @@ mongoose.connection.on("error", (error) => {
    console.log("Disconnected from MongoDB");
  });
 
+app.set("views", path.join(__dirname, "views")); 
 app.set("view engine", "ejs"); 
 
-// Middleware to parse URL-encoded form data and reserve special characters for sending data
+// // Middleware to parse URL-encoded form data and reserve special characters for sending data
 app.use(express.urlencoded({ extended: false }));
 
 // Render the index view with the shortUrls object.
 app.get("/", async (req, res) => {
   const shortUrls = await ShortUrl.find();
   res.render("index", { shortUrls: shortUrls });
+  // res.send("Hi")
 });
 
 // Create a new ShortUrl object and redirect to the index view.
@@ -53,3 +57,4 @@ app.get("/:shortUrl", async (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000);
+module.exports = app
