@@ -1,25 +1,20 @@
-# Dockerfile for building a Node.js 20-based image for the application
-
-# Use the Node.js 20 image based on Alpine Linux 3.17.
+# 1. Base image
 FROM node:20-alpine3.17
 
-# Copy package.json and package-lock.json to the /usr/app/ directory in the image.
-COPY package*.json /usr/app/
-
-# Copy the src directory to the /usr/app/ directory in the image.
-COPY src /usr/app/src
-
-# Describe that the container is listening on port 3000.
-EXPOSE 3000
-
-# Copy the remaining files in the current directory to the /usr/app/ directory in the image.
-COPY . /usr/app
-
-# Set the working directory to /usr/app.
+# 2. Set the working directory first
 WORKDIR /usr/app
 
-# Install project dependencies using npm.
+# 3. Copy ONLY the dependency files
+# Docker will "cache" this layer. It only re-runs if these files change.
+COPY package*.json ./
+
+# 4. Install dependencies (This is the slowest part, so we cache it!)
 RUN npm install
 
-# Specify the command to run when the container starts.
+# 5. NOW copy the rest of your source code
+# Since this happens AFTER npm install, changing code won't trigger a re-install.
+COPY . .
+
+# 6. Documentation and Start command
+EXPOSE 3000
 CMD ["npm", "run", "start"]
